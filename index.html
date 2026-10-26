@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>N.O. | データベース・業務システムエンジニア</title>
+<meta name="description" content="1989年から業務システムとデータベースに携わるフリーランスエンジニアのポートフォリオ。ビューの処理時間を45分から2分に短縮、同じお客様に27年越しで再参画した実績など。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="N.O. | データベース・業務システムエンジニア">
+<meta property="og:description" content="仕様書に書かれていない業務を、設計の段階で見つける。製造・会計・建設・人事給与の業務システムとデータベースを37年。">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#F5F8F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1A1F" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%231B5FAA'/%3E%3Ctext x='16' y='23' font-size='20' font-weight='700' text-anchor='middle' fill='white' font-family='serif'%3EN%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Zen+Old+Mincho:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F5F8F7; --grid:#E1EAE8; --ink:#10262D; --ink-2:#44585F; --line:#C5D3D0;
+  --accent:#1B5FAA; --mark:#F2B705; --seg:#9DB3BA;
+  --serif:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --sans:"BIZ UDPGothic","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+  --w:1040px;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#0E1A1F; --grid:#15262C; --ink:#E7F0F2; --ink-2:#A3B8BF; --line:#2B3F46; --accent:#6AA9F0; --seg:#4D6A74; }
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:64px;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.9 var(--sans);overflow-wrap:anywhere}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--paper);padding:8px 14px;z-index:20}
+.skip:focus{left:8px}
+.wrap{max-width:var(--w);margin:0 auto;padding:0 20px}
+.prose{max-width:38em}
+.hero .prose{max-width:50em}
+
+/* header */
+.top{position:sticky;top:0;z-index:10;background:var(--paper);border-bottom:1px solid var(--line)}
+.topin{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px}
+.id{font:900 1.25rem/1 var(--serif);color:var(--ink);text-decoration:none;letter-spacing:.04em}
+.top nav{display:flex;flex-wrap:wrap;justify-content:flex-end}
+.top nav a{font-size:.9rem;color:var(--ink);text-decoration:none;padding:10px 10px;min-height:44px;display:inline-flex;align-items:center}
+.top nav a:hover{color:var(--accent);text-decoration:underline}
+
+/* hero */
+.hero{padding:56px 0 32px;border-bottom:1px solid var(--line);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px;background-position:-1px -1px}
+.who{margin:0;color:var(--ink-2);font-size:.95rem}
+h1{font:900 clamp(1.5rem,5.4vw,3.5rem)/1.32 var(--serif);letter-spacing:.02em;margin:.35em 0 .55em;max-width:19em;text-wrap:balance}
+.nb{display:inline-block}
+.lede{font-size:1.05rem;margin:0;max-width:50em}
+.lede+.lede{margin-top:.6em}
+.facts{display:flex;flex-wrap:wrap;gap:12px 40px;margin:28px 0 40px;padding:0}
+.facts div{margin:0}
+.facts dt{font-size:.82rem;color:var(--ink-2);line-height:1.5}
+.facts dd{margin:0;font-weight:700}
+.thread{margin:0}
+.thread figcaption{font-size:.9rem;color:var(--ink-2);margin:0 0 10px;max-width:60em}
+.scroll{overflow-x:auto;border-top:1px solid var(--ink);padding-top:6px}
+.scroll svg{display:block;width:100%;min-width:820px;height:auto}
+.hint{display:none;margin:6px 0 0;font-size:.82rem;color:var(--ink-2)}
+@media (max-width:860px){.hint{display:block}}
+@media (max-width:640px){.hint{display:none}}
+.lane-name{font:700 13px var(--sans);fill:var(--ink)}
+.tick{font:12px var(--sans);fill:var(--ink-2);text-anchor:middle}
+.vline{stroke:var(--line);stroke-width:1}
+.lane-line{stroke:var(--line);stroke-dasharray:2 4}
+.seg{fill:var(--seg);transform-box:fill-box;transform-origin:0 50%}
+.seg.thr{fill:var(--accent)}
+.arc{fill:none;stroke:var(--accent);stroke-width:1.6}
+.arc-label{font:700 12.5px var(--sans);fill:var(--accent);text-anchor:middle}
+.scroll svg.compact{min-width:0}
+.compact .lane-name{font-size:28px}
+.compact .tick{font-size:25px}
+.compact .arc-label{font-size:27px}
+@media (prefers-reduced-motion:no-preference){
+  .seg{transition:transform .7s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
+  .arc{transition:stroke-dashoffset 1s ease-out 1.1s}
+  .arc-label{transition:opacity .6s ease 1.8s}
+  .thread.pre .seg{transform:scaleX(0)}
+  .thread.pre .arc{stroke-dasharray:1;stroke-dashoffset:1}
+  .thread.pre .arc-label{opacity:0}
+}
+
+/* sections */
+.sec{padding-top:72px}
+.sec>.wrap{display:grid;grid-template-columns:190px minmax(0,1fr);gap:0 48px}
+h2{font:900 clamp(1.4rem,3.2vw,1.8rem)/1.4 var(--serif);margin:0;border-top:3px solid var(--ink);padding-top:16px;align-self:start}
+.body>*:first-child{margin-top:0}
+h3{font:700 1.15rem/1.6 var(--serif);margin:0 0 .4em}
+p{margin:0 0 1em}
+.small{font-size:.88rem;color:var(--ink-2)}
+@media (max-width:800px){
+  .sec>.wrap{grid-template-columns:minmax(0,1fr)}
+  h2{margin-bottom:22px}
+}
+
+/* strengths */
+.str{display:grid;grid-template-columns:14em minmax(0,1fr);gap:4px 28px;padding:20px 0;border-top:1px solid var(--line)}
+.str:first-child{border-top:0;padding-top:0}
+.str h3{margin:0}
+.str p{margin:0;max-width:36em}
+@media (max-width:640px){.str{grid-template-columns:minmax(0,1fr)}}
+
+/* results */
+.case{padding:0 0 40px}
+.case h3{font-size:clamp(1.25rem,2.6vw,1.6rem);line-height:1.5}
+.ba{margin:22px 0 22px;display:grid;gap:10px;max-width:640px}
+.ba .row{display:grid;grid-template-columns:4.2em minmax(0,1fr) 6em;align-items:center;gap:14px}
+.ba .t{font-size:.9rem;color:var(--ink-2)}
+.ba .b{display:block;height:30px;background:var(--seg)}
+.ba .b.after{background:var(--accent);min-width:8px}
+.ba .v{white-space:nowrap;font:900 2rem/1 var(--serif);text-align:left;font-variant-numeric:tabular-nums}
+.ba .v mark{background:linear-gradient(transparent 62%,var(--mark) 62%);color:inherit;padding:0 2px}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 36px}
+.two article{border-left:3px solid var(--accent);padding-left:18px}
+.two h3{font-size:1.1rem}
+.two p{margin:0 0 .8em}
+@media (max-width:760px){.two{grid-template-columns:minmax(0,1fr)}}
+
+/* skills */
+.legend{display:flex;flex-wrap:wrap;gap:6px 22px;margin:0 0 22px;font-size:.88rem;color:var(--ink-2)}
+.legend span::before{content:"";display:inline-block;width:14px;height:10px;margin-right:8px;background:var(--seg)}
+.legend span.rec::before{background:var(--accent)}
+.sg{margin:0 0 26px}
+.sg h3{font-size:1rem;margin:0 0 6px}
+.sk{display:grid;grid-template-columns:11.5em minmax(0,1fr) 8.5em;align-items:center;gap:12px;padding:5px 0;border-top:1px solid var(--line);font-size:.95rem}
+.sk .nm{line-height:1.5}
+.sk .tr{height:10px}
+.sk .tr i{display:block;height:100%;background:var(--seg)}
+.sk.rec .tr i{background:var(--accent)}
+.sk .yr{font-weight:700;font-variant-numeric:tabular-nums}
+@media (max-width:640px){
+  .sk{grid-template-columns:minmax(0,1fr) auto;gap:2px 12px}
+  .sk .nm{grid-column:1;grid-row:1}
+  .sk .yr{grid-column:2;grid-row:1}
+  .sk .tr{grid-column:1/-1;grid-row:2}
+}
+
+/* history */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 6px}
+.chips button{font:inherit;font-size:.9rem;line-height:1.4;min-height:40px;padding:6px 14px;border:1px solid var(--ink);background:transparent;color:var(--ink);border-radius:3px;cursor:pointer}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.count{margin:0 0 14px}
+.hist{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.hist>li{border-bottom:1px solid var(--line)}
+.hist summary{display:grid;grid-template-columns:13.5em minmax(0,1fr) 5.5em;gap:4px 20px;padding:16px 34px 16px 0;cursor:pointer;list-style:none;position:relative}
+.hist summary::-webkit-details-marker{display:none}
+.hist summary::after{content:"+";position:absolute;right:6px;top:14px;font:400 1.5rem/1.4 var(--sans);color:var(--accent)}
+.hist details[open] summary::after{content:"\2212"}
+.when{font-weight:700;font-variant-numeric:tabular-nums;line-height:1.6}
+.when small{display:block;font-weight:400;color:var(--ink-2)}
+.what{font-family:var(--serif);font-weight:700;line-height:1.6}
+.role{font-size:.85rem;color:var(--ink-2);line-height:1.6}
+.det{margin:0 0 22px;padding-left:calc(13.5em + 20px)}
+.det>div{display:grid;grid-template-columns:7em minmax(0,1fr);gap:12px;padding:9px 0;border-top:1px dotted var(--line)}
+.det dt{color:var(--ink-2);font-size:.9rem}
+.det dd{margin:0}
+.det ul{margin:0;padding-left:1.2em}
+.det li{margin:0 0 .35em}
+@media (max-width:760px){
+  .hist summary{grid-template-columns:minmax(0,1fr)}
+  .det{padding-left:0}
+  .det>div{grid-template-columns:minmax(0,1fr);gap:2px}
+}
+
+/* contact */
+.cond{margin:0 0 24px;padding:0;display:grid;gap:0}
+.cond div{display:grid;grid-template-columns:8em minmax(0,1fr);gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+.cond div:last-child{border-bottom:1px solid var(--line)}
+.cond dt{color:var(--ink-2);font-size:.92rem}
+.cond dd{margin:0;font-weight:700}
+.links{list-style:none;margin:0;padding:0}
+.links li{margin:0 0 .4em}
+footer{padding:72px 0 48px}
+footer p{margin:0;font-size:.85rem;color:var(--ink-2)}
+
+noscript p{padding:20px;border:1px solid var(--ink)}
+
+@media print{
+  :root{--paper:#fff;--grid:#fff;--ink:#000;--ink-2:#333;--line:#bbb;--accent:#1B5FAA;--seg:#9DB3BA}
+  body{font-size:10.5pt;line-height:1.7}
+  .top,.chips,.count,.hint,.skip{display:none!important}
+  .hero{background:none;padding-top:0}
+  .sec{padding-top:36px}
+  .scroll{overflow:visible}
+  .scroll svg{min-width:0}
+  .hist summary::after{display:none}
+  .hist>li,.case,.str,.sg{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="top">
+  <div class="wrap topin">
+    <a class="id" href="#top">N.O.</a>
+    <nav aria-label="ページ内の移動">
+      <a href="#results">実績</a>
+      <a href="#history">経歴</a>
+      <a href="#skills">スキル</a>
+      <a href="#contact">稼働・連絡</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top" aria-labelledby="h1">
+  <div class="wrap">
+    <p class="who">N.O.　フリーランス（個人事業主）</p>
+    <h1 id="h1"><span class="nb">仕様書に書かれていない業務を、</span><span class="nb">設計の段階で見つける。</span></h1>
+    <p class="lede prose">1989年から37年、製造・会計・建設・人事給与の業務システムとデータベースに携わってきました。</p>
+    <p class="lede prose">同じお客様から繰り返しお声がけをいただくことが、いちばんの実績です。</p>
+
+    <dl class="facts">
+      <div><dt>稼働開始</dt><dd>即日</dd></div>
+      <div><dt>最寄駅</dt><dd>東武桐生線 新桐生駅／JR両毛線 桐生駅</dd></div>
+      <div><dt>契約形態</dt><dd>個人事業主（フリーランス）</dd></div>
+    </dl>
+
+    <figure class="thread pre" id="threadFig">
+      <figcaption>帯の長さが参画期間です。青い帯は、新しく作ったシステムに、後から戻った案件です。</figcaption>
+      <div class="scroll" tabindex="0" role="region" aria-label="経歴の年表（横にスクロールできます）">
+        <svg id="thread" role="img" aria-label="1989年から2026年までの経歴の年表。建設業のシステムは1993年に新規構築し、2020年に再参画。製造業の統合システムは2003年の新規開発から2020年まで関与。"></svg>
+      </div>
+      <p class="hint">左右にスクロールできます</p>
+    </figure>
+  </div>
+</section>
+
+<section class="sec" id="strengths" aria-labelledby="h-str">
+  <div class="wrap">
+    <h2 id="h-str">強み</h2>
+    <div class="body">
+      <div class="str">
+        <h3>業務を理解して設計する</h3>
+        <p>製造業の生産・仕入・販売・在庫管理に長く携わってきたため、仕様書にない業務上の前提や例外に早い段階で気づけます。締め処理や例外パターンの確認を設計段階で出すので、テスト工程での手戻りを減らせます。会計（一般会計）、人事給与、建設業向けの業務支援も経験しています。</p>
+      </div>
+      <div class="str">
+        <h3>データベースの性能と移行</h3>
+        <p>実行計画を読んで、結合順とインデックスから見直します。PL/SQLとT-SQLの方言差を踏まえたストアドの移行、ETLの作成、Power BIでのレポート作成まで、データの流れを通して担当できます。</p>
+      </div>
+      <div class="str">
+        <h3>抜けたあとも回る状態をつくる</h3>
+        <p>運用担当の社員向けのSQL講師、変換ルールを一覧化した設計書、移行済みストアドの対応表、設計の判断理由を書き残す引き継ぎなど、自分が離任したあともチームが回る形で仕事を終えます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="results" aria-labelledby="h-res">
+  <div class="wrap">
+    <h2 id="h-res">実績</h2>
+    <div class="body">
+      <article class="case">
+        <h3>人事情報システムのビューの処理時間を、45分から2分へ</h3>
+        <div class="ba" role="img" aria-label="処理時間の比較。改善前は45分、改善後は2分。約96％の短縮。">
+          <div class="row"><span class="t">改善前</span><span class="b before" style="width:100%"></span><span class="v">45分</span></div>
+          <div class="row"><span class="t">改善後</span><span class="b after" style="width:4.44%"></span><span class="v"><mark>2分</mark></span></div>
+        </div>
+        <p class="prose">実行計画を確認したうえで、ビューの結合順とインデックスを見直しました。約96％の短縮です。あわせて、運用を担当される社員の方々にSQLの講師を務めました。離任したあとも、ご自身でチューニングできる状態にしておくことが、お客様のコストをいちばん下げると考えたためです。</p>
+        <p class="small">精密機器メーカー向け 社内人事情報システム（2024年10月〜2026年1月）</p>
+      </article>
+
+      <div class="two">
+        <article>
+          <h3>Anaplan連携インターフェース21本を、約100名の案件で構築</h3>
+          <p>計画領域のデータベース設計と、Anaplan連携インターフェース21本の設計・開発を担当しました。後続のチームが仕様を追えるよう、変換ルールを一覧化した設計書を整えてから実装に入りました。</p>
+          <p class="small">情報材メーカー向け 生産管理システム（2026年3月〜9月）</p>
+        </article>
+        <article>
+          <h3>同じお客様に、27年越しで呼ばれました</h3>
+          <p>建設業向けの橋梁設計支援などのシステムは、1993年に新規構築し、2020年に改修で再参画しました。当時の設計意図を把握していたため、影響範囲の調査を短期間で終えられました。</p>
+          <p>製造業の統合システムも、2003年の新規開発から2020年まで関与しました。将来の機能追加を見込んだテーブル設計にしたことで、2013年からの改修を少ない工数で進められました。</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="history" aria-labelledby="h-his">
+  <div class="wrap">
+    <h2 id="h-his">経歴</h2>
+    <div class="body">
+      <p class="prose">新しい案件から順に並べています。各行を開くと、担当と成果が読めます。</p>
+      <div class="chips" role="group" aria-label="分野で絞り込む" id="chips"></div>
+      <p class="count small" id="count" aria-live="polite"></p>
+      <ol class="hist" id="hist"></ol>
+      <noscript><p>経歴の一覧を表示するにはJavaScriptを有効にしてください。</p></noscript>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="skills" aria-labelledby="h-skl">
+  <div class="wrap">
+    <h2 id="h-skl">スキル</h2>
+    <div class="body">
+      <p class="prose">年数は、各案件の参画期間（開始月と終了月を含む）から数えた概算です。</p>
+      <div class="legend"><span class="rec">2024年以降の案件でも使用</span><span>それ以前の経験</span></div>
+      <div id="skillbox"></div>
+
+      <h3 style="margin-top:36px">いま学んでいること</h3>
+      <p class="prose">設計・実装・テストでは、生成AI（Claude）を日常的に活用しています。その先を見据えて、AIエージェント開発に必要な知識を学んでいます。まずはG検定の取得を目標に、AIの基礎を体系的に固めている段階です。あわせて、Rust・Goの学習も続けています。</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="contact" aria-labelledby="h-con">
+  <div class="wrap">
+    <h2 id="h-con">稼働・連絡</h2>
+    <div class="body">
+      <dl class="cond">
+        <div><dt>稼働開始</dt><dd>即日</dd></div>
+        <div><dt>最寄駅</dt><dd>東武桐生線 新桐生駅／JR両毛線 桐生駅</dd></div>
+        <div><dt>契約形態</dt><dd>個人事業主（フリーランス）</dd></div>
+        <div><dt>得意分野</dt><dd>DBサイド、基幹システムの設計・実装、システムリプレース・移行、SQLチューニング、ETL・BI構築、業務パッケージのカスタマイズ、プロジェクトマネジメント、アジャイル開発</dd></div>
+        <div><dt>得意業務</dt><dd>製造業の生産・仕入・販売・在庫管理、会計（一般会計）、PDM（製品情報管理）、人事・給与、建設業向け業務支援</dd></div>
+      </dl>
+      <ul class="links" id="links"></ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>最終更新：2026年10月</p>
+  </div>
+</footer>
+
+<script>
+/* ▼ 連絡先を載せる場合は、ここに入力してください（空のままなら表示されません）。
+     email  : 例 "name@example.com"
+     github : 例 "https://github.com/ユーザー名" */
+const CONTACT = { email: "", github: "" };
+
+const LANES = [
+  { id: "control",       name: "制御・計測" },
+  { id: "construction",  name: "建設業" },
+  { id: "manufacturing", name: "製造業" },
+  { id: "package",       name: "会計・パッケージ" },
+  { id: "public",        name: "人事・公共ほか" }
+];
+
+const P = [
+  { from: "2026-03", to: "2026-09", lane: "manufacturing", role: "SE・PG",
+    title: "情報材メーカー向け 生産管理システム構築（計画領域）",
+    scale: "チーム11名／開発8名／全体約100名",
+    tech: "PL/SQL、Oracle、SQL Developer、A5:SQL Mk-2、Anaplan、Claude",
+    points: [
+      "計画領域のデータベース設計を担当",
+      "Anaplan連携インターフェース21本の設計・開発（基本設計から総合テストまで全工程）",
+      "後続チームが仕様を追えるよう、変換ルールを一覧化した設計書を整備してから実装",
+      "学んだこと：SaaS型計画ソリューション（Anaplan）との連携方式の設計、大規模案件での設計書レビューの進め方"
+    ] },
+  { from: "2024-10", to: "2026-01", lane: "public", role: "SE・PG",
+    title: "精密機器メーカー向け 社内人事情報システムの改修およびデータ基盤整備",
+    scale: "チーム10名／開発8名／全体10名",
+    tech: "T-SQL、Python、Ruby、PHP 8（CakePHP）、PowerShell、SQL Server 2022、Pentaho 9.2、Power BI、Git、GitLab",
+    points: [
+      "既存ビューの高速化：処理時間 45分 → 2分（約96％短縮）",
+      "新規ビューと新規ETLの作成。人事情報システムの移管に伴い、ETLからPowerShellへ方式を変更",
+      "GitLabでコード量を集計・可視化（GitLab CI/CDでの計測の自動化、パイプラインはYAMLで定義）",
+      "Power BIで部署別の要員表を作成",
+      "クライアント社員へのSQL講師",
+      "既存PHP 8（CakePHP）システムの改修（画面から呼び出され、JSONを返す処理）"
+    ] },
+  { from: "2023-06", to: "2024-09", lane: "manufacturing", role: "PG",
+    title: "製造業向け 生産・仕入・販売・在庫管理システムのリプレース",
+    scale: "チーム25名／開発24名／全体25名",
+    tech: "Visual Basic 2015、T-SQL、PL/SQL、SQL Server 2022、SPREAD、ActiveReports",
+    points: [
+      "SPREAD・ActiveReportsで画面と帳票を担当",
+      "案件の途中から、他メンバーが担当予定だったストアドのPL/SQL→T-SQLコンバートも担当",
+      "契約終了で離任していくメンバーの作業分を引き継ぎ、終了まで業務を完遂",
+      "引き継ぎ時の手戻りを抑えるため、移行済みストアドの対応表を作成しながら進行"
+    ] },
+  { from: "2022-04", to: "2023-05", lane: "manufacturing", role: "SE・PG",
+    title: "自動車部品メーカー向け 在庫管理システム",
+    scale: "チーム8名／開発7名／全体8名",
+    tech: "Visual Basic .NET（.NET Framework）、SQL Server 2016",
+    points: [
+      "老朽化に伴うリプレース。詳細設計から結合テストまでを担当",
+      "若手プロパー社員のOJTを担当し、システム設計、とくにDB設計のノウハウを伝授",
+      "設計意図を口頭で終わらせず、判断理由を書き残す形で引き継ぎ"
+    ] },
+  { from: "2020-04", to: "2022-03", lane: "construction", role: "PL／SE・PG", thread: true,
+    title: "建設業向け 橋梁設計支援／橋梁点検支援／道路台帳データベースシステム（再参画）",
+    scale: "チーム5名／開発5名／全体5名",
+    tech: "Visual C++.NET、Visual Basic .NET（新規開発は.NET Framework）、Oracle、MFC（既存資産の保守）",
+    points: [
+      "1993年に自身が新規構築したシステム群に、27年越しで再参画",
+      "当時の設計意図を把握していたため、改修の影響範囲調査を短期間で完了",
+      "Windows 10移行に伴うVisual C++資産の刷新（既存MFC資産の保守と、新規開発部分の.NET Framework化）",
+      "プロジェクトリーダーとして5名を統括"
+    ] },
+  { from: "2013-10", to: "2020-03", lane: "manufacturing", role: "SE・PG", thread: true,
+    title: "製造業向け 生産管理・仕入管理・販売管理・在庫管理の統合システム（再参画・改修）",
+    scale: "チーム8名／開発8名／全体8名",
+    tech: "Visual Basic .NET、PHP（MVC）、HTML、CSS、JavaScript、PL/SQL、Oracle、PDO",
+    points: [
+      "2003年に自身が新規開発したシステムに再参画し、6年半にわたって継続して担当",
+      "Windows 8.1対応化に伴う改修と、業務要件の変更に応じた機能追加（詳細設計からコーディング、各種テストまで）",
+      "PHP（MVC）で、画面からのリクエストを受けてOracleの登録・更新・削除を行う処理を実装（PDO使用）",
+      "画面全体の再表示から、画面の一部だけを書き換える方式への改修（JavaScript）",
+      "新規開発時の設計意図を把握していたため、改修の影響範囲を短時間で特定し、長期にわたり安定稼働を維持"
+    ] },
+  { from: "2010-11", to: "2013-09", lane: "package", role: "SE・PG",
+    title: "製造業向け 会計パッケージ「IFS」のカスタマイズ（一般会計）",
+    scale: "チーム6名／開発6名／全体6名",
+    tech: "PL/SQL、Oracle、IFS",
+    points: [
+      "一般会計部分の機能追加。PL/SQLでサーバサイドの業務ロジックを実装（詳細設計から結合テストまで）",
+      "将来のバージョンアップで改修が無駄にならないよう、パッケージ本体に極力手を入れず、拡張ポイントで要件を満たす方式を選択"
+    ] },
+  { from: "2009-12", to: "2010-10", lane: "public", role: "PM／SE・PG",
+    title: "運送業・新聞販売業・自動車メーカー向け 3システムの開発／老朽化更新",
+    scale: "チーム5〜10名／3案件",
+    tech: "Visual Basic 2008、Visual C# 2008、T-SQL、SQL Server 2005、ASP.NET MVC",
+    points: [
+      "運送業向けの勤怠管理システムの新規開発と、運行管理システムの機能追加（5名）",
+      "新聞販売業向けの販売管理システムの更新（5名）、自動車メーカー向けの生産工程管理システムの更新（10名）",
+      "後半の2案件はプロジェクトマネージャーとして並行して推進し、計15名を統括。いずれも納期どおりに完了"
+    ] },
+  { from: "2009-01", to: "2009-09", lane: "public", role: "SE・PG",
+    title: "地方自治体向け 緊急通報システムの新規開発",
+    scale: "チーム5名／開発5名／全体5名",
+    tech: "Visual Basic 2005、T-SQL、SQL Server 2005",
+    points: [
+      "詳細設計から総合テストまでを担当",
+      "人命に関わるシステムのため、正常系よりも異常系のテストケースを重点的に洗い出し"
+    ] },
+  { from: "2006-04", to: "2008-12", lane: "package", role: "PM／SE・PG",
+    title: "PDMパッケージ「Obbligato」のカスタマイズおよび製品本体の機能追加",
+    scale: "チーム5名／開発5名／全体5名",
+    tech: "Visual C++.NET 2005、PL/SQL、Oracle、Obbligato、MFC（既存資産の保守）",
+    points: [
+      "ユーザー向けのカスタマイズと、パッケージ本体の機能追加（R7.2→R8.1）",
+      "プロジェクトマネージャーとして5名を統括",
+      "不特定多数が使う製品のため、個別要望をそのまま実装せず、設定で吸収できる形に落とし込むことを徹底"
+    ] },
+  { from: "2003-10", to: "2006-03", lane: "manufacturing", role: "PM／SE・PG", thread: true,
+    title: "製造業向け 生産管理・仕入管理・販売管理・在庫管理の統合システム新規開発",
+    scale: "チーム8名／開発8名／全体8名",
+    tech: "Visual Basic .NET、PHP（MVC）、HTML、CSS、JavaScript、PL/SQL、Oracle",
+    points: [
+      "基本設計から総合テストまでを担当。プロジェクトマネージャーとして8名を統括",
+      "Web（PHP／HTML／CSS）とクライアントアプリ（VB.NET）が混在する構成の設計。PHP側はMVCで構築",
+      "4業務を横断するデータモデルの設計。将来の機能追加を見込んだテーブル設計とし、2013年からの改修を少ない工数で実現",
+      "同一システムに、新規開発から17年にわたり関与"
+    ] },
+  { from: "2001-12", to: "2003-09", lane: "package", role: "PL／SE・PG",
+    title: "製造業向け 会計パッケージ「IFS」のカスタマイズ（一般会計機能）",
+    scale: "チーム6名／開発6名／全体6名",
+    tech: "PL/SQL、Oracle、IFS",
+    points: [
+      "一般会計機能のサーバサイド（PL/SQL）を担当（詳細設計から結合テストまで）。プロジェクトリーダーとして6名を統括",
+      "会計の実務知識がない状態からの参画のため、経理部門へのヒアリングを重ね、仕訳の考え方を理解したうえで設計"
+    ] },
+  { from: "1999-04", to: "2001-11", lane: "public", role: "PL／SE・PG",
+    title: "官公庁向け 人事給与システム／製造業向け 販売管理システム",
+    scale: "人事給与は総勢200名規模／販売管理は8名",
+    tech: "Visual Basic、YPS-COBOL、Oracle",
+    points: [
+      "官公庁向け人事給与システムで、退職金算定機能を開発（1999年10月〜2001年11月）",
+      "条例改正のたびに算定式が変わるため、係数をマスタ化し、プログラム改修なしで対応できる構造に",
+      "製造業向け販売管理システムは、基本設計から総合テストまでを担当（1999年4月〜9月）"
+    ] },
+  { from: "1993-02", to: "1999-03", lane: "construction", role: "PL／SE・PG", thread: true,
+    title: "建設業向け 橋梁設計支援／橋梁点検支援／道路台帳データベースシステムの新規開発",
+    scale: "チーム5名／開発5名／全体5名",
+    tech: "Visual C++（MFC）、Visual Basic 6.0、Oracle",
+    points: [
+      "要件定義から総合テストまでの全工程を担当。プロジェクトリーダーとして5名を統括",
+      "6年にわたり3システムを新規構築。構造計算を伴う技術系システムの設計",
+      "2020年に同じシステム群の改修で再度お声がけをいただき、27年越しで再参画"
+    ] },
+  { from: "1989-04", to: "1993-01", lane: "control", role: "SE・PG",
+    title: "自動車メーカー向け 制御システム／製造業向け OCRシート設計支援システム",
+    scale: "チーム5名／開発5名／全体5名",
+    tech: "PL/M、MS-C、REX286、Windows 3.1",
+    points: [
+      "エンジン計測装置制御システム（1989年4月〜10月）、無人走行制御システム（1989年11月〜1991年10月）、OCRシート設計支援システム（1991年11月〜1993年1月）を担当（詳細設計から結合テストまで）",
+      "リアルタイムOS（REX286）と独自言語PL/Mによる低レイヤーの開発に従事。ハードウェアに近い層の経験が、のちの性能改善の基礎になっている"
+    ] }
+];
+
+/* 年数は各案件の参画期間（開始月・終了月を含む）から算出。rec: 2024年以降の案件でも使用 */
+const SKILLS = [
+  { g: "データベース", items: [
+    { n: "Oracle", y: 27 + 11/12, t: "約28年", rec: 1 },
+    { n: "PL/SQL", y: 18 + 5/12, t: "約18年", rec: 1 },
+    { n: "SQL Server", y: 5.5, t: "約5年半", rec: 1 },
+    { n: "T-SQL", y: 4 + 4/12, t: "約4年", rec: 1 } ] },
+  { g: "Web・スクリプト", items: [
+    { n: "PHP", y: 10 + 4/12, t: "約10年（断続）", rec: 1 },
+    { n: "JavaScript", y: 9, t: "約9年" },
+    { n: "CakePHP", y: 16/12, t: "約1年4か月", rec: 1 },
+    { n: "Python、Ruby", y: 16/12, t: "各約1年4か月", rec: 1 } ] },
+  { g: "データ基盤・開発管理", items: [
+    { n: "Pentaho（ETL）", y: 16/12, t: "約1年4か月", rec: 1 },
+    { n: "Power BI", y: 16/12, t: "約1年4か月", rec: 1 },
+    { n: "PowerShell", y: 16/12, t: "約1年4か月", rec: 1 },
+    { n: "Git、GitLab（CI/CD）", y: 16/12, t: "各約1年4か月", rec: 1 } ] },
+  { g: ".NET", items: [
+    { n: "VB.NET", y: 15 + 2/12, t: "約15年", rec: 1 },
+    { n: "C#、ASP.NET MVC", y: 11/12, t: "各約11か月" } ] },
+  { g: "パッケージ・帳票ほか", items: [
+    { n: "Visual C++（MFC）", y: 10 + 11/12, t: "約11年" },
+    { n: "VB6", y: 6 + 2/12, t: "約6年" },
+    { n: "IFS（会計）", y: 4 + 9/12, t: "約4年9か月" },
+    { n: "Obbligato（PDM）", y: 2 + 9/12, t: "約2年9か月" },
+    { n: "SPREAD、ActiveReports", y: 16/12, t: "各約1年4か月", rec: 1 } ] }
+];
+
+/* ---------- helpers ---------- */
+const ym = s => { const [y, m] = s.split("-").map(Number); return { y, m }; };
+const startX = s => { const { y, m } = ym(s); return y + (m - 1) / 12; };
+const endX   = s => { const { y, m } = ym(s); return y + m / 12; };
+const jp     = s => { const { y, m } = ym(s); return y + "年" + m + "月"; };
+const months = (a, b) => { const A = ym(a), B = ym(b); return (B.y - A.y) * 12 + B.m - A.m + 1; };
+const durText = n => {
+  if (n < 24) return n + "か月";
+  const y = Math.floor(n / 12), r = n % 12;
+  return r ? y + "年" + r + "か月" : y + "年";
+};
+
+/* ---------- 年表（SVG） ---------- */
+function drawThread(first) {
+  const svg = document.getElementById("thread");
+  const NS = "http://www.w3.org/2000/svg";
+  const compact = matchMedia("(max-width:640px)").matches;
+  svg.textContent = "";
+  svg.classList.toggle("compact", compact);
+  const X0 = 1989, X1 = 2027, W = 960, top = 14;
+  const L = compact ? 8 : 150, R = compact ? 952 : 930;
+  const laneH = compact ? 104 : 70, barOff = compact ? 40 : 34, barH = compact ? 30 : 18;
+  const x = t => L + (t - X0) / (X1 - X0) * (R - L);
+  const lane = Object.fromEntries(LANES.map((l, i) => [l.id, i]));
+  const axisY = top + LANES.length * laneH;
+  svg.setAttribute("viewBox", "0 0 " + W + " " + (axisY + (compact ? 48 : 40)));
+  const el = (name, attrs, text) => {
+    const e = document.createElementNS(NS, name);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    if (text) e.textContent = text;
+    return e;
+  };
+
+  for (let yr = 1990; yr <= 2025; yr += 5) {
+    svg.append(el("line", { x1: x(yr), x2: x(yr), y1: top, y2: axisY, class: "vline" }));
+    svg.append(el("text", { x: x(yr), y: axisY + (compact ? 34 : 20), class: "tick" }, yr));
+  }
+  svg.append(el("line", { x1: L, x2: R, y1: axisY, y2: axisY, class: "vline" }));
+
+  LANES.forEach((l, i) => {
+    const y0 = top + i * laneH;
+    svg.append(el("line", { x1: L, x2: R, y1: y0 + barOff + barH / 2, y2: y0 + barOff + barH / 2, class: "lane-line" }));
+    svg.append(el("text", { x: compact ? 8 : 2, y: compact ? y0 + 26 : y0 + 48, class: "lane-name" }, l.name));
+  });
+
+  const chrono = [...P].sort((a, b) => a.from.localeCompare(b.from));
+  chrono.forEach((p, i) => {
+    const y0 = top + lane[p.lane] * laneH;
+    const xa = x(startX(p.from)), xb = x(endX(p.to));
+    const r = el("rect", {
+      x: xa, y: y0 + barOff, width: Math.max(xb - xa, 3), height: barH, rx: 2,
+      class: "seg" + (p.thread ? " thr" : ""), style: "--d:" + (lane[p.lane] * 0.12 + i * 0.015).toFixed(2) + "s"
+    });
+    r.append(el("title", {}, jp(p.from) + "〜" + jp(p.to) + "：" + p.title));
+    svg.append(r);
+  });
+
+  const arcs = [
+    { lane: "construction",  a: startX("1993-02"), b: startX("2020-04"),
+      label: compact ? "27年越しの再参画" : "27年越しの再参画（1993年→2020年）" },
+    { lane: "manufacturing", a: startX("2003-10"), b: endX("2020-03"),
+      label: compact ? "同じシステムに17年関与" : "同じシステムに17年関与（2003年→2020年）" }
+  ];
+  const rise = compact ? 52 : 40;
+  arcs.forEach(a => {
+    const y0 = top + lane[a.lane] * laneH, yb = y0 + barOff;
+    const x1 = x(a.a), x2 = x(a.b);
+    svg.append(el("path", { d: "M" + x1 + " " + yb + " C" + x1 + " " + (yb - rise) + " " + x2 + " " + (yb - rise) + " " + x2 + " " + yb, class: "arc", pathLength: 1 }));
+    svg.append(el("text", { x: (x1 + x2) / 2, y: compact ? y0 - 4 : y0 + 1, class: "arc-label" }, a.label));
+  });
+
+  const fig = document.getElementById("threadFig");
+  if (first) requestAnimationFrame(() => requestAnimationFrame(() => fig.classList.remove("pre")));
+  else fig.classList.remove("pre");
+}
+
+/* ---------- 経歴一覧 ---------- */
+function drawHistory() {
+  const hist = document.getElementById("hist");
+  const sorted = [...P].sort((a, b) => b.from.localeCompare(a.from));
+  sorted.forEach((p, i) => {
+    const n = months(p.from, p.to);
+    const li = document.createElement("li");
+    li.dataset.lane = p.lane;
+    li.innerHTML =
+      '<details' + (i < 2 ? " open" : "") + '>' +
+        '<summary>' +
+          '<span class="when">' + jp(p.from) + '〜' + jp(p.to) + '<small>' + durText(n) + '</small></span>' +
+          '<span class="what">' + p.title + '</span>' +
+          '<span class="role">' + p.role + '</span>' +
+        '</summary>' +
+        '<dl class="det">' +
+          '<div><dt>規模</dt><dd>' + p.scale + '</dd></div>' +
+          '<div><dt>使用技術</dt><dd>' + p.tech + '</dd></div>' +
+          '<div><dt>担当と成果</dt><dd><ul>' + p.points.map(t => "<li>" + t + "</li>").join("") + '</ul></dd></div>' +
+        '</dl>' +
+      '</details>';
+    hist.append(li);
+  });
+
+  const chips = document.getElementById("chips");
+  const count = document.getElementById("count");
+  const filters = [{ id: "all", name: "すべて" },
+    { id: "manufacturing", name: "製造業" }, { id: "construction", name: "建設業" },
+    { id: "package", name: "会計・パッケージ" }, { id: "public", name: "人事・公共ほか" },
+    { id: "control", name: "制御・計測" }];
+  const apply = f => {
+    let shown = 0;
+    hist.querySelectorAll(":scope > li").forEach(li => {
+      const hide = f !== "all" && li.dataset.lane !== f;
+      li.hidden = hide;
+      if (!hide) shown++;
+    });
+    count.textContent = shown + "件を表示しています（全" + P.length + "件）";
+    chips.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.f === f)));
+  };
+  filters.forEach(f => {
+    const b = document.createElement("button");
+    b.type = "button"; b.dataset.f = f.id; b.textContent = f.name;
+    b.addEventListener("click", () => apply(f.id));
+    chips.append(b);
+  });
+  apply("all");
+}
+
+/* ---------- スキル ---------- */
+function drawSkills() {
+  const MAX = 28;
+  document.getElementById("skillbox").innerHTML = SKILLS.map(g =>
+    '<div class="sg"><h3>' + g.g + '</h3>' +
+    g.items.map(s =>
+      '<div class="sk' + (s.rec ? " rec" : "") + '">' +
+        '<span class="nm">' + s.n + '</span>' +
+        '<span class="tr" aria-hidden="true"><i style="width:' + Math.max(s.y / MAX * 100, 2).toFixed(1) + '%"></i></span>' +
+        '<span class="yr">' + s.t + '</span>' +
+      '</div>').join("") +
+    '</div>').join("");
+}
+
+/* ---------- 連絡先 ---------- */
+function drawContact() {
+  const items = [];
+  if (CONTACT.email)  items.push('<li>メール：<a href="mailto:' + CONTACT.email + '">' + CONTACT.email + '</a></li>');
+  if (CONTACT.github) items.push('<li>GitHub：<a href="' + CONTACT.github + '" rel="me">' + CONTACT.github + '</a></li>');
+  document.getElementById("links").innerHTML = items.length
+    ? items.join("")
+    : "<li>ご連絡は、ご紹介元のエージェント様を通じてお願いいたします。</li>";
+}
+
+drawThread(true); drawHistory(); drawSkills(); drawContact();
+
+/* 画面幅が変わったら年表を描き直す */
+let wasCompact = matchMedia("(max-width:640px)").matches;
+addEventListener("resize", () => {
+  const c = matchMedia("(max-width:640px)").matches;
+  if (c !== wasCompact) { wasCompact = c; drawThread(false); }
+});
+
+/* 印刷時は、開閉式の経歴をすべて開く */
+addEventListener("beforeprint", () => document.querySelectorAll("details").forEach(d => { d.dataset.was = d.open; d.open = true; }));
+addEventListener("afterprint",  () => document.querySelectorAll("details").forEach(d => { d.open = d.dataset.was === "true"; }));
+</script>
+</body>
+</html>
